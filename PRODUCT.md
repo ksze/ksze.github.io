@@ -37,7 +37,7 @@ Working, deployed, real projects — every entry links to something live, not sc
   - **ClusterMob** — community registry of Hermes profiles and profile packs. Live: https://clustermob.com/
 - Confirmed page scope: projects + full about section + résumé link.
 - OPEN DECISIONS (do not invent):
-  - Résumé: no public résumé URL exists yet; the page ships "Résumé on request" → GitHub profile. Swap to a real resume.pdf link when Kal drops the file into the repo.
+  - Résumé: mailto link to kal@kalunite.net with prefilled subject (no public PDF). Swap to a real resume.pdf link when Kal drops the file into the repo.
   - Contact links: GitHub (ksze) confirmed; LinkedIn URL and email address not confirmed — no fabricated email on the page.
 
 ## Brand Commitments
