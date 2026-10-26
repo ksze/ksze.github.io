@@ -41,6 +41,40 @@ typography:
     fontSize: "0.72rem"
     fontWeight: 800
     letterSpacing: "0.14em"
+  open-badge-chip:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "0.78rem"
+    fontWeight: 900
+    letterSpacing: "0.16em"
+  heading-bay-chip:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "clamp(0.75rem, 0.7rem + 0.3vw, 1.05rem)"
+    fontWeight: 900
+    letterSpacing: "0.12em"
+  hall-close:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "clamp(1.4rem, 3vw, 2rem)"
+    fontWeight: 900
+    letterSpacing: "-0.02em"
+  plan-booth-number:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "21px"
+    fontWeight: 900
+    letterSpacing: "0.12em"
+  plan-booth-name:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "27px"
+    fontWeight: 800
+  plan-label:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "13px"
+    fontWeight: 700
+    letterSpacing: "0.22em"
+  open-badge-svg:
+    fontFamily: "Overpass, 'Trebuchet MS', sans-serif"
+    fontSize: "14px"
+    fontWeight: 900
+    letterSpacing: "0.16em"
 rounded:
   sm: "3px"
   md: "4px"

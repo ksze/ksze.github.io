@@ -45,7 +45,6 @@
 :focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 html { scrollbar-color: var(--ink-soft) var(--concrete-deep); }
 
@@ -300,8 +299,8 @@ body.floor-open .openbadge.flip {
   margin-bottom: 1rem;
 }
 .hbay {
-  color: var(--orange-deep);
-  border: 2px solid currentColor;
+  color: #b23a06;
+  border: 2px solid #b23a06;
   border-radius: 4px;
   font-size: clamp(0.75rem, 0.7rem + 0.3vw, 1.05rem);
   font-weight: 900;
@@ -423,7 +422,7 @@ body.floor-open .openbadge.flip {
 kbd {
   font-family: inherit;
   font-size: 0.85em;
-  border: 1.5px solid currentColor;
+  border: 1.5px solid #43453c;
   border-radius: 3px;
   padding: 0 0.3em;
 }
