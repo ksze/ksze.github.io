@@ -35,10 +35,10 @@ Working, deployed, real projects — every entry links to something live, not sc
   - **PeerAuth** — web page to set up P2P TOTP-based authentication. Live: https://ksze.github.io/PeerAuth/ · Repo: https://github.com/ksze/PeerAuth
   - **Xuanzang** — geography and history learning web app. Live: https://kal-hermes.github.io/Xuanzang/ · Repo: https://github.com/kal-hermes/Xuanzang
   - **ClusterMob** — community registry of Hermes profiles and profile packs. Live: https://clustermob.com/
-- Confirmed page scope: projects + full about section + résumé link.
+- Confirmed page scope: projects + full about section + résumé link (mailto kal@kalunite.net).
 - OPEN DECISIONS (do not invent):
   - Résumé: mailto link to kal@kalunite.net with prefilled subject (no public PDF). Swap to a real resume.pdf link when Kal drops the file into the repo.
-  - Contact links: GitHub (ksze) confirmed; LinkedIn URL and email address not confirmed — no fabricated email on the page.
+  - Contact links: GitHub (ksze) confirmed; email kal@kalunite.net confirmed 2026-10-26; LinkedIn not confirmed.
 
 ## Brand Commitments
 
