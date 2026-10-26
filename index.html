@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kal Sze — Demo Floor</title>
+<meta name="description" content="Four open booths of shipped software by Ka Lun (Kal) Sze: ZhangJing, PeerAuth, Xuanzang, ClusterMob. Every door leads to something running.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#plan">Skip to the floor plan</a>
+
+<header class="overhead" aria-label="Hall signage">
+  <a class="hall-id" href="#plan">KAL&nbsp;SZE</a>
+  <nav class="signs" aria-label="Booth directory">
+    <a href="#zhangjing"><span class="bay">B-01</span> ZhangJing</a>
+    <a href="#peerauth"><span class="bay">B-02</span> PeerAuth</a>
+    <a href="#xuanzang"><span class="bay">B-03</span> Xuanzang</a>
+    <a href="#clustermob"><span class="bay">B-04</span> ClusterMob</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main id="plan">
+
+  <section class="lobby" aria-label="Directory and floor plan">
+    <div class="directory">
+      <h1>Four booths. <br>All open today.</h1>
+      <p class="lede">A demo floor of shipped software. Every door on this
+      map leads to something running right now. No mockups, no “coming
+      soon”. Walk the floor.</p>
+      <p class="wayfind">
+        <a class="btn btn-walk" href="#zhangjing">Start at B-01
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13m0 0 5-5m-5 5-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </p>
+      <p class="hallnote">Hall A · doors never close · <a href="#about">who built this</a></p>
+    </div>
+
+    <!-- Floor plan: authored linework. Booths link to their sections. -->
+    <svg class="plan" viewBox="0 0 640 540" role="img"
+         aria-label="Floor plan of Hall A with four open booths: B-01 ZhangJing, B-02 PeerAuth, B-03 Xuanzang, B-04 ClusterMob. Entrance at the bottom marks you are here.">
+      <rect x="24" y="24" width="592" height="452" rx="10" class="hall"/>
+      <!-- aisles -->
+      <rect x="296" y="24" width="48" height="452" class="aisle"/>
+      <line x1="24" y1="250" x2="296" y2="250" class="aisleline"/>
+      <line x1="344" y1="250" x2="616" y2="250" class="aisleline"/>
+      <!-- booths -->
+      <a href="#zhangjing" class="booth-link"><g class="booth">
+        <rect x="52" y="52" width="216" height="168" rx="6"/>
+        <text x="68" y="82" class="booth-no">B-01</text>
+        <text x="160" y="140" class="booth-name">ZhangJing</text>
+        <text x="160" y="162" class="booth-sub">BYOK translation</text>
+        <g class="openbadge" transform="translate(128,186)">
+          <rect x="0" y="0" width="64" height="22" rx="4"/>
+          <text x="32" y="16">OPEN</text>
+        </g>
+      </g></a>
+      <a href="#peerauth" class="booth-link"><g class="booth">
+        <rect x="372" y="52" width="216" height="168" rx="6"/>
+        <text x="388" y="82" class="booth-no">B-02</text>
+        <text x="480" y="140" class="booth-name">PeerAuth</text>
+        <text x="480" y="162" class="booth-sub">P2P TOTP setup</text>
+        <g class="openbadge" transform="translate(448,186)">
+          <rect x="0" y="0" width="64" height="22" rx="4"/>
+          <text x="32" y="16">OPEN</text>
+        </g>
+      </g></a>
+      <a href="#xuanzang" class="booth-link"><g class="booth">
+        <rect x="52" y="278" width="216" height="168" rx="6"/>
+        <text x="68" y="308" class="booth-no">B-03</text>
+        <text x="160" y="366" class="booth-name">Xuanzang</text>
+        <text x="160" y="388" class="booth-sub">Silk Road lessons</text>
+        <g class="openbadge" transform="translate(128,412)">
+          <rect x="0" y="0" width="64" height="22" rx="4"/>
+          <text x="32" y="16">OPEN</text>
+        </g>
+      </g></a>
+      <a href="#clustermob" class="booth-link"><g class="booth">
+        <rect x="372" y="278" width="216" height="168" rx="6"/>
+        <text x="388" y="308" class="booth-no">B-04</text>
+        <text x="480" y="366" class="booth-name">ClusterMob</text>
+        <text x="480" y="388" class="booth-sub">Hermes registry</text>
+        <g class="openbadge" transform="translate(448,412)">
+          <rect x="0" y="0" width="64" height="22" rx="4"/>
+          <text x="32" y="16">OPEN</text>
+        </g>
+      </g></a>
+      <!-- wayfinding details -->
+      <g class="fixture">
+        <rect x="76" y="226" width="72" height="26" rx="4"/>
+        <text x="112" y="244" text-anchor="middle">INFO</text>
+      </g>
+      <!-- entrance -->
+      <g class="entrance">
+        <rect x="288" y="468" width="64" height="16" class="doorgap"/>
+        <path d="M288 476 A 40 40 0 0 1 352 476" class="doorswing"/>
+        <circle cx="320" cy="512" r="7" class="youare"/>
+        <text x="320" y="536" class="youare-t" text-anchor="middle">YOU ARE HERE</text>
+      </g>
+    </svg>
+  </section>
+
+  <section class="booth" id="zhangjing" tabindex="-1" aria-labelledby="zhangjing-h">
+    <div class="booth-tag"><span class="bay">BOOTH B-01</span><span class="openbadge flip"><span>OPEN</span></span></div>
+    <h2 id="zhangjing-h">ZhangJing</h2>
+    <p class="pitch">Bring-your-own-key LLM translation. Paste your text, pick
+    any provider and model, translate with <em>your</em> API key. Everything
+    runs client-side; the key never leaves your browser. Swap translation
+    and text-to-speech providers on the fly; listen to or download the
+    result.</p>
+    <figure class="evidence">
+      <img src="assets/shots/zhangjing.png" alt="Screenshot of ZhangJing: source and target language selectors beside the translation panes" loading="lazy" width="1920" height="992">
+      <figcaption>Live capture of the app, October 2026 · <a href="https://kal-hermes.github.io/ZhangJing/">open it yourself</a></figcaption>
+    </figure>
+    <p class="proves">The proof: real multi-provider LLM integration with zero
+    backend: the whole product is the browser tab.</p>
+    <p class="actions">
+      <a class="btn btn-live" href="https://kal-hermes.github.io/ZhangJing/">Enter the live app
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="link-src" href="https://github.com/kal-hermes/ZhangJing">Read the source</a>
+    </p>
+  </section>
+
+  <section class="booth" id="peerauth" tabindex="-1" aria-labelledby="peerauth-h">
+    <div class="booth-tag"><span class="bay">BOOTH B-02</span><span class="openbadge flip"><span>OPEN</span></span></div>
+    <h2 id="peerauth-h">PeerAuth</h2>
+    <p class="pitch">A hedge against AI deepfakes: when a voice and a face can
+    be forged, how do you know the person on the phone is real? PeerAuth
+    lets two people set up a shared TOTP secret in person (scan, verify,
+    done), so any future call or video chat can be confirmed with a 6-digit
+    code. No accounts, no server holding your tokens; the whole mechanism
+    lives on the page and in the public source.</p>
+    <figure class="evidence">
+      <img src="assets/shots/peerauth.png" alt="Screenshot of PeerAuth: TOTP setup and verification interface" loading="lazy" width="1920" height="992">
+      <figcaption>Live capture of the app, October 2026 · <a href="https://ksze.github.io/PeerAuth/">open it yourself</a></figcaption>
+    </figure>
+    <p class="proves">The proof: security mechanics done client-side:
+    cryptography as a static page, not a service.</p>
+    <p class="actions">
+      <a class="btn btn-live" href="https://ksze.github.io/PeerAuth/">Enter the live app
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="link-src" href="https://github.com/ksze/PeerAuth">Read the source</a>
+    </p>
+  </section>
+
+  <section class="booth" id="xuanzang" tabindex="-1" aria-labelledby="xuanzang-h">
+    <div class="booth-tag"><span class="bay">BOOTH B-03</span><span class="openbadge flip"><span>OPEN</span></span></div>
+    <h2 id="xuanzang-h">Xuanzang</h2>
+    <p class="pitch">Learn geography and history by travelling. Follow
+    Xuanzang’s seventh-century journey from Chang’an along the Silk Road on
+    an animated map: step-through journey lessons that draw the route as you
+    go, place quizzes built from researched historical geography, and
+    present-day context at every stop. Fully bilingual, English and
+    中文.</p>
+    <figure class="evidence">
+      <img src="assets/shots/xuanzang.png" alt="Screenshot of Xuanzang: animated map of the Silk Road journey with lesson controls" loading="lazy" width="1920" height="992">
+      <figcaption>Live capture of the app, October 2026 · <a href="https://kal-hermes.github.io/Xuanzang/">open it yourself</a></figcaption>
+    </figure>
+    <p class="proves">The proof: content, cartography, and interaction
+    engineering in one shipped learning product.</p>
+    <p class="actions">
+      <a class="btn btn-live" href="https://kal-hermes.github.io/Xuanzang/">Enter the live app
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="link-src" href="https://github.com/kal-hermes/Xuanzang">Read the source</a>
+    </p>
+  </section>
+
+  <section class="booth" id="clustermob" tabindex="-1" aria-labelledby="clustermob-h">
+    <div class="booth-tag"><span class="bay">BOOTH B-04</span><span class="openbadge flip"><span>OPEN</span></span></div>
+    <h2 id="clustermob-h">ClusterMob</h2>
+    <p class="pitch">A community registry of Hermes agent profiles and
+    profile packs — publish what you have built, browse and search what
+    others have, all backed by a public REST API documented with OpenAPI.
+    Unlike the other booths on this floor, this one is a full production
+    product: frontend, backend, database, and deployment, running at
+    clustermob.com.</p>
+    <figure class="evidence">
+      <img src="assets/shots/clustermob.png" alt="Screenshot of ClusterMob: the registry browse page at clustermob.com" loading="lazy" width="1920" height="992">
+      <figcaption>Live capture of the product, October 2026 · <a href="https://clustermob.com/">open it yourself</a></figcaption>
+    </figure>
+    <p class="proves">The proof: end-to-end product ownership: from schema
+    to serving live traffic.</p>
+    <p class="actions">
+      <a class="btn btn-live" href="https://clustermob.com/">Enter the live product
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7m0 0H9m8 0v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </p>
+  </section>
+
+  <section class="office" id="about" tabindex="-1" aria-labelledby="about-h">
+    <div class="booth-tag"><span class="bay">SITE OFFICE</span></div>
+    <h2 id="about-h">The engineer behind the floor</h2>
+    <p class="pitch">I’m Ka Lun “Kal” Sze, a senior software engineer in
+    Calgary. For five years I built the backends behind industrial
+    energy-sector platforms at Avaxia Group: TypeScript and Node services
+    that handled real operational data at scale, under audit. Before that:
+    machine-learning infrastructure for retail video analytics.</p>
+    <p class="pitch">I work agent-first: this entire floor was designed and
+    shipped with an AI agent (Hermes) as my implementation partner, the same
+    way I built every project above. The stack range is wide on purpose
+    (TypeScript, Python, Rust, Erlang/OTP) because the interesting
+    problems rarely stay in one language.</p>
+    <p class="pitch">Everything on this floor is real, running, and public.
+    Walk into any booth; the source is the résumé.</p>
+    <p class="actions">
+      <a class="btn btn-live" href="resume.pdf">Résumé (PDF)</a>
+      <a class="link-src" href="https://github.com/ksze">github.com/ksze</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="hallclose">
+  <p class="closeline">The floor never closes. The code is public.</p>
+  <p class="closemeta">© 2026 Ka Lun Sze · Hall A has no walls, only links ·
+  <a href="#plan">back to the entrance</a></p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

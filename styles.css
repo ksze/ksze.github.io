@@ -1,0 +1,377 @@
+/* ============================================================
+   Kal Sze — Demo Floor
+   World: convention-hall wayfinding. Concrete ivory ground,
+   signage ink, safety-orange OPEN accent, teal secondary.
+   Signage face: Overpass (highway-signage heritage), self-hosted.
+   ============================================================ */
+
+@font-face {
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("assets/fonts/overpass-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("assets/fonts/overpass-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --concrete: #efebe3;
+  --concrete-deep: #e4ddcd;
+  --ink: #1b1c18;
+  --ink-soft: #43453c;
+  --orange: #e84e0f;
+  --orange-deep: #c33f08;
+  --teal: #0d5f56;
+  --paper: #f7f4ec;
+  --line: #b9b19d;
+  --shadow: 0 2px 10px rgba(27, 28, 24, 0.14);
+  --step: clamp(1rem, 0.96rem + 0.4vw, 1.1875rem);
+}
+
+/* ---- browser surfaces carry the world ---- */
+::selection { background: var(--orange); color: var(--paper); }
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+html { scrollbar-color: var(--ink-soft) var(--concrete-deep); }
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .openbadge.flip, .openbadge.flip span { transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--concrete);
+  color: var(--ink);
+  font-family: "Overpass", "Trebuchet MS", sans-serif;
+  font-size: var(--step);
+  line-height: 1.55;
+  font-feature-settings: "tnum" 1;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.6rem 1rem;
+  z-index: 10;
+}
+.skip:focus-visible { left: 0.5rem; top: 0.5rem; }
+
+/* ---- overhead signage nav ---- */
+.overhead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow);
+}
+.hall-id {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1.2rem;
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  border-right: 1px solid rgba(247, 244, 236, 0.25);
+}
+.signs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  overflow-x: auto;
+}
+.signs a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+  border-right: 1px solid rgba(247, 244, 236, 0.14);
+}
+.signs a:last-child { border-right: 0; }
+.signs a:hover { background: var(--orange); color: var(--ink); }
+.bay {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 0.1rem 0.45rem;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+}
+
+/* ---- lobby: directory + plan ---- */
+.lobby {
+  display: grid;
+  grid-template-columns: minmax(320px, 5fr) 7fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vh, 5rem) clamp(1.2rem, 4vw, 3rem) clamp(2rem, 5vh, 4rem);
+  min-height: calc(100vh - 3.2rem);
+}
+.directory h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.1rem;
+}
+.lede {
+  max-width: 34rem;
+  font-size: 1.15em;
+  margin: 0 0 1.6rem;
+}
+.wayfind { margin: 0 0 1.4rem; }
+.hallnote {
+  color: var(--ink-soft);
+  font-size: 0.9em;
+}
+.hallnote a { color: var(--teal); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn:active { transform: translateY(0); }
+.btn-walk { background: var(--ink); color: var(--paper); }
+.btn-live { background: var(--orange); color: var(--ink); }
+.btn-live:hover { background: var(--orange-deep); color: var(--paper); }
+.ico { width: 1.05em; height: 1.05em; }
+
+/* ---- the floor plan ---- */
+.plan { width: 100%; height: auto; display: block; }
+.plan .hall { fill: var(--concrete-deep); stroke: var(--ink); stroke-width: 7; }
+.plan .aisle { fill: var(--concrete); }
+.plan .aisleline { stroke: var(--line); stroke-width: 3; stroke-dasharray: 10 8; }
+.plan .booth rect {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 4;
+  transition: fill 150ms ease-out;
+}
+.booth-link { cursor: pointer; outline-offset: -4px; }
+.booth-link:hover .booth rect,
+.booth-link:focus-visible .booth rect { fill: #ffefe2; }
+.booth-no {
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 0.12em;
+  fill: var(--orange-deep);
+}
+.booth-name {
+  font-weight: 800;
+  font-size: 27px;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+.booth-sub {
+  font-size: 16px;
+  font-weight: 500;
+  text-anchor: middle;
+  fill: var(--ink-soft);
+}
+.plan .fixture rect {
+  fill: var(--paper);
+  stroke: var(--ink-soft);
+  stroke-width: 3;
+}
+.plan .fixture text,
+.aislelabel {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  fill: var(--ink-soft);
+}
+.entrance .doorgap { fill: var(--concrete); }
+.entrance .doorswing {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 5;
+}
+.entrance .youare { fill: var(--orange); stroke: var(--ink); stroke-width: 2.5; }
+.youare-t {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  fill: var(--ink);
+}
+/* OPEN badges — flip together on load */
+.openbadge rect { fill: var(--concrete); stroke: var(--ink); stroke-width: 2; }
+.openbadge text {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-anchor: middle;
+  fill: var(--ink-soft);
+}
+body.floor-open .plan .openbadge rect,
+.openbadge.flip span { transition: none; }
+body.floor-open .plan .openbadge rect {
+  fill: var(--orange);
+  stroke: var(--ink);
+}
+body.floor-open .plan .openbadge text { fill: var(--ink); }
+.openbadge.flip {
+  display: inline-block;
+  background: var(--concrete-deep);
+  color: var(--ink-soft);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  padding: 0.08rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  perspective: 300px;
+  transition: background 200ms ease-out, color 200ms ease-out;
+}
+body.floor-open .openbadge.flip {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+/* ---- booths (project sections) ---- */
+.booth, .office {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(4rem, 12vh, 8rem) clamp(1.2rem, 4vw, 3rem);
+  scroll-margin-top: 4rem;
+  outline: none;
+}
+.booth + .booth, .office {
+  border-top: 3px dashed var(--line);
+}
+.booth:nth-child(even) .pitch, .office .pitch { margin-left: auto; }
+.booth-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+.booth-tag .bay { color: var(--ink-soft); font-size: 0.8rem; }
+.booth h2, .office h2 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  margin: 0 0 1rem;
+}
+.pitch {
+  max-width: 38rem;
+  font-size: 1.12em;
+  margin: 0 0 1.6rem;
+}
+.pitch em { font-style: normal; font-weight: 800; }
+.evidence {
+  margin: 0 0 1.6rem;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--paper);
+}
+.evidence img { display: block; width: 100%; height: auto; }
+.evidence figcaption {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85em;
+  color: var(--ink-soft);
+  border-top: 2px solid var(--concrete-deep);
+}
+.evidence figcaption a { color: var(--teal); }
+.proves {
+  max-width: 38rem;
+  font-weight: 700;
+  border-left: none;
+  padding-left: 0;
+  color: var(--ink);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 1.6rem 0 0;
+}
+.link-src {
+  color: var(--teal);
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.link-src:hover { color: var(--ink); }
+
+/* ---- site office (about) ---- */
+.office .pitch { max-width: 42rem; }
+
+/* ---- hall close ---- */
+.hallclose {
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(2.5rem, 7vh, 4.5rem) clamp(1.2rem, 4vw, 3rem);
+  text-align: center;
+}
+.closeline {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.8rem;
+}
+.closemeta { margin: 0; color: rgba(247, 244, 236, 0.75); font-size: 0.9em; }
+.closemeta a { color: var(--paper); }
+
+/* ---- responsive ---- */
+@media (max-width: 900px) {
+  .lobby {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-top: 2rem;
+  }
+  .directory h1 br { display: none; }
+}
+@media (max-width: 640px) {
+  .overhead { flex-direction: column; }
+  .hall-id { border-right: 0; border-bottom: 1px solid rgba(247, 244, 236, 0.25); }
+  .signs { flex-wrap: nowrap; scrollbar-width: none; }
+  .signs::-webkit-scrollbar { display: none; }
+  .signs a { border-right: 0; padding: 0.7rem 0.8rem; }
+  .booth, .office { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+}
