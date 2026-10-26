@@ -48,33 +48,31 @@
     s.focus({ preventScroll: true });
   }
 
+  // Procession keys: J walks forward, K walks back. Plain arrow keys keep
+  // their native incremental scrolling.
   document.addEventListener("keydown", function (e) {
     if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key !== "j" && e.key !== "J" && e.key !== "k" && e.key !== "K") return;
     var tag = (e.target.tagName || "").toLowerCase();
     if (tag === "input" || tag === "textarea" || tag === "select") return;
     var idx = currentStopIndex();
-    if (e.key === "j" || e.key === "J" || e.key === "ArrowDown") {
-      if (e.key === "ArrowDown" && idx === -1) return; // let arrows scroll naturally at top
-      e.preventDefault();
-      goTo(idx + 1);
-    } else if (e.key === "k" || e.key === "K" || e.key === "ArrowUp") {
-      if (e.key === "ArrowUp" && idx === -1) return;
-      e.preventDefault();
-      goTo(idx - 1);
-    }
+    e.preventDefault();
+    if (e.key === "j" || e.key === "J") goTo(idx + 1);
+    else goTo(idx - 1);
   });
 
-  // Hovering a booth on the map highlights its section bay.
+  // Hovering or keyboard-focusing a booth on the map highlights its section.
   var bayByHref = {};
   stops.forEach(function (s) { bayByHref["#" + s.id] = s; });
-  document.querySelectorAll(".booth-link").forEach(function (link) {
+  function tint(link, on) {
     var target = bayByHref[link.getAttribute("href")];
     if (!target) return;
-    link.addEventListener("mouseenter", function () {
-      target.style.background = "rgba(232, 78, 15, 0.06)";
-    });
-    link.addEventListener("mouseleave", function () {
-      target.style.background = "";
-    });
+    target.style.background = on ? "rgba(232, 78, 15, 0.06)" : "";
+  }
+  document.querySelectorAll(".booth-link").forEach(function (link) {
+    link.addEventListener("mouseenter", function () { tint(link, true); });
+    link.addEventListener("mouseleave", function () { tint(link, false); });
+    link.addEventListener("focus", function () { tint(link, true); });
+    link.addEventListener("blur", function () { tint(link, false); });
   });
 })();

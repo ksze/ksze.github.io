@@ -56,7 +56,11 @@ html {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .openbadge.flip, .openbadge.flip span { transition: none !important; }
+  .openbadge.flip,
+  .openbadge.flip span,
+  .plan .openbadge,
+  .plan .openbadge rect,
+  .plan .openbadge text { animation: none !important; transition: none !important; }
 }
 
 body {
@@ -158,7 +162,7 @@ body {
   color: var(--ink-soft);
   font-size: 0.9em;
 }
-.hallnote a { color: var(--teal); }
+.hallnote a { color: var(--teal); white-space: nowrap; }
 
 .btn {
   display: inline-flex;
@@ -236,7 +240,25 @@ body {
   letter-spacing: 0.18em;
   fill: var(--ink);
 }
-/* OPEN badges — flip together on load */
+/* OPEN badges — one synchronized flip on load: every badge squashes to its
+   hinge and back while the ink swaps at the midpoint. */
+@keyframes badge-squash {
+  0% { transform: scaleX(1); }
+  50% { transform: scaleX(0.04); }
+  100% { transform: scaleX(1); }
+}
+@keyframes badge-ground {
+  0%, 46% { fill: var(--concrete); }
+  54%, 100% { fill: var(--orange); }
+}
+@keyframes badge-label {
+  0%, 46% { fill: var(--ink-soft); }
+  54%, 100% { fill: var(--ink); }
+}
+@keyframes chip-skin {
+  0%, 46% { background: var(--concrete-deep); color: var(--ink-soft); }
+  54%, 100% { background: var(--orange); color: var(--ink); }
+}
 .openbadge rect { fill: var(--concrete); stroke: var(--ink); stroke-width: 2; }
 .openbadge text {
   font-size: 14px;
@@ -245,13 +267,6 @@ body {
   text-anchor: middle;
   fill: var(--ink-soft);
 }
-body.floor-open .plan .openbadge rect,
-.openbadge.flip span { transition: none; }
-body.floor-open .plan .openbadge rect {
-  fill: var(--orange);
-  stroke: var(--ink);
-}
-body.floor-open .plan .openbadge text { fill: var(--ink); }
 .openbadge.flip {
   display: inline-block;
   background: var(--concrete-deep);
@@ -262,12 +277,39 @@ body.floor-open .plan .openbadge text { fill: var(--ink); }
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.16em;
-  perspective: 300px;
-  transition: background 200ms ease-out, color 200ms ease-out;
 }
+body.floor-open .plan .openbadge rect {
+  animation: badge-ground 700ms linear both, badge-squash 700ms
+    cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+body.floor-open .plan .openbadge text { animation: badge-label 700ms linear both; }
 body.floor-open .openbadge.flip {
-  background: var(--orange);
-  color: var(--ink);
+  animation: badge-squash 700ms cubic-bezier(0.2, 0.7, 0.3, 1) both,
+    chip-skin 700ms linear both;
+}
+
+/* booth headings carry their own wayfinding: bay number inline, OPEN chip
+   riding the same line — no eyebrow label above the heading. */
+.booth-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.hbay {
+  color: var(--orange-deep);
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  font-size: 0.5em;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  padding: 0.12em 0.4em;
+  margin-right: 0.7em;
+  vertical-align: 0.18em;
+  white-space: nowrap;
 }
 
 /* ---- booths (project sections) ---- */
@@ -281,7 +323,6 @@ body.floor-open .openbadge.flip {
 .booth + .booth, .office {
   border-top: 3px dashed var(--line);
 }
-.booth:nth-child(even) .pitch, .office .pitch { margin-left: auto; }
 .booth-tag {
   display: flex;
   align-items: center;
@@ -372,6 +413,24 @@ body.floor-open .openbadge.flip {
   .hall-id { border-right: 0; border-bottom: 1px solid rgba(247, 244, 236, 0.25); }
   .signs { flex-wrap: nowrap; scrollbar-width: none; }
   .signs::-webkit-scrollbar { display: none; }
-  .signs a { border-right: 0; padding: 0.7rem 0.8rem; }
-  .booth, .office { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .signs a { border-right: 0; padding: 0.95rem 0.8rem; }
+  .overhead::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 64px;
+    height: 47px;
+    background: linear-gradient(90deg, rgba(27, 28, 24, 0), var(--ink) 82%);
+    pointer-events: none;
+  }
+  .lobby { padding-bottom: 1rem; }
+  .booth, .office { padding-top: 2.25rem; padding-bottom: 3.5rem; }
+}
+kbd {
+  font-family: inherit;
+  font-size: 0.85em;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  padding: 0 0.3em;
 }
