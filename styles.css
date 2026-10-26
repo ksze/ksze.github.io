@@ -303,7 +303,7 @@ body.floor-open .openbadge.flip {
   color: var(--orange-deep);
   border: 2px solid currentColor;
   border-radius: 4px;
-  font-size: 0.5em;
+  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 1.05rem);
   font-weight: 900;
   letter-spacing: 0.12em;
   padding: 0.12em 0.4em;
